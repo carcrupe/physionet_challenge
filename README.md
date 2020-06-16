@@ -11,7 +11,7 @@ The goal of the 2020 Challenge is to identify clinical diagnoses from 12-lead EC
 
 # EDA and machine learning modeling
 
-To run this project I have used the notebooks from Google Cloud Platform. A Virtual Machine with 4CPUs and 15GB or RAM.
+To run this project I have used Google Cloud Platform notebooks. A Virtual Machine with 4CPUs and 15GB of RAM.
 
 In the uploaded notebook physionet_EDA&models.ipynb, I have followed several steps to train and save the ML model:
 
@@ -22,6 +22,7 @@ In the uploaded notebook physionet_EDA&models.ipynb, I have followed several ste
 5. To make predictions using the saved model, run the driver.py as follows: <br />
       python driver.py input_directory output_directory <br />
   where "input_directory" is a directory for input data files and output_directory is a directory for output of the predictions.
+6. Evaluation metrics are run to compare the predictions with the original data.
   
   # Conclusions & things to do
   
