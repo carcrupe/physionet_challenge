@@ -9,25 +9,23 @@ Automatic detection and classification of cardiac abnormalities can assist physi
 
 The goal of the 2020 Challenge is to identify clinical diagnoses from 12-lead ECG recordings.
 
-# EDA and machine learning modeling
+# EDA, feature extraction and machine learning modeling
 
-To run this project I have used Google Cloud Platform notebooks. A Virtual Machine with 4CPUs and 15GB of RAM.
-
-In the uploaded notebook physionet_EDA&models.ipynb, I have followed several steps to train and save the ML model:
+In the uploaded notebook physionet_EDA&models.ipynb, I have followed several steps to train the ML classification model:
 
 1. Load the ECG signals and header with information such as sampling rate, age of the subject and diagnostic.
 2. Extract a few paremeters from the header and with respect to the amplitude and time between R peaks in the ECG signal. I have saved this information as features in a dataframe and the diagnostic as the target for the model.
-3. I have trained and optimized several models, obtaining in the best case an accuracy for the classification of around 0.4.
+3. I have trained and optimized several models, obtaining in the best case an accuracy for the classification of around 0.45.
 4. The model is saved as classifier.model
 5. To make predictions using the saved model, run the driver.py as follows: <br />
       python driver.py input_directory output_directory <br />
   where "input_directory" is a directory for input data files and output_directory is a directory for output of the predictions.
-6. Evaluation metrics are run to compare the predictions with the original data.
+6. Evaluation metrics provided at the Physionet website are run to compare the predictions with the original data.
   
   # Conclusions & things to do
   
-This is only a first approach to get familiar with the data, do some exploratory analyisis and some predictions. ECG signals are really complicated, hard to interpret and, as expected, a simple feature extracion of the R peaks is not sufficient to deploy an accurate classification model.
+This is only a first approach to get familiar with the data, do some exploratory analyisis and predictions. ECG signals are really complicated, hard to interpret and, as expected, a simple feature extracion of the R peaks is not sufficient to deploy an accurate classification model.
 
-As I mentioned in the notebook, some of the arrythmias are not really related to the R peak of the ECG. Therefore, after optimizing and training the models, I could not achieve an accuracy of more than 0.4. 
+As I mentioned in the notebook, some of the arrythmias are not really related to the R peak of the ECG. Therefore, after optimizing and training the models, I could not achieve an accuracy of more than 0.45. 
 
-As the next steps, I will work on extracting more meaningful features from the ECG events, such as position and duration of the P wave, QRS, T wave, ST segment, PR segment, etc. Using these paramenters as features for the model training, should give much better results in the prediction of each of the targeted arrythmias.
+As the next step, I will work on extracting more meaningful features from the ECG events, such as position and duration of the P wave, QRS, T wave, ST segment, PR segment, etc. Using these paramenters as features for the training of the model, should give much better results in the prediction of each of the targeted arrythmias.
