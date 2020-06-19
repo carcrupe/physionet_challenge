@@ -3,6 +3,8 @@
 import numpy as np
 from scipy.signal import butter, lfilter
 from scipy import stats
+from scipy.fftpack import fft
+import peakutils
 
 def detect_peaks(ecg_measurements,signal_frequency,gain):
 
@@ -209,3 +211,34 @@ def get_diagnosis(input_file):
     return tmp
 
 
+def get_fft_peaks(data, header_data):
+    
+    tmp_hea = header_data[0].split(' ')
+    sample_Fs= int(tmp_hea[2])
+
+    filter_lowcut = 0.001
+    filter_highcut = 15.0
+    filter_order = 1
+    n_peaks=4
+
+    # Measurements filtering - 0-15 Hz band pass filter.
+    filtered_ecg_measurements = bandpass_filter(data[0], lowcut=filter_lowcut, highcut=filter_highcut, signal_freq=sample_Fs, filter_order=filter_order)
+
+    full_signal_fft_values = np.abs(fft(filtered_ecg_measurements))
+    x_values_fft = range(0, len(filtered_ecg_measurements), 1)
+
+    peaks_ind = peakutils.indexes(full_signal_fft_values, thres=0.2, min_dist=5)
+    # Only keep the peaks in the significative range in ECG
+    peaks_ind = [peak for peak in peaks_ind if peak < 1000]
+
+    # Get the four peaks with highest amplitude in the FFT signal. 
+    sorted_amplitudes = sorted(full_signal_fft_values[peaks_ind])
+    four_highest_peaks = [peak for peak in peaks_ind if (full_signal_fft_values[peak] in sorted_amplitudes)][:4]
+    
+     # If less than four peaks are detected, I fill the array with 0s
+    if(len(four_highest_peaks)<n_peaks):
+        four_highest_peaks[len(four_highest_peaks):n_peaks+1]=np.zeros(n_peaks-len(four_highest_peaks))
+    
+    return  four_highest_peaks
+
+   
