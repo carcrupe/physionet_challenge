@@ -14,17 +14,17 @@ The goal of the 2020 Challenge is to identify clinical diagnoses from 12-lead EC
 In the uploaded notebook physionet_EDA&models.ipynb, I have followed several steps to train the ML classification model:
 
 1. Load the ECG signals and header with information such as sampling rate, age of the subject and diagnostic.
-2. Extract a few paremeters from the header and with respect to the amplitude and time between R peaks in the ECG signal. I have saved this information as features in a dataframe and the diagnostic as the target for the model.
+2. Extract a few paremeters from the header and with respect to the amplitude and time between R peaks in the ECG signal. I have saved this information as features in a dataframe and the diagnostic as the target for the model. Also, applying the FFT, I have stored as features the four highest peaks of the spectrum, to add information about the main frequencies of the signal.
 3. I have trained and optimized several models, obtaining in the best case an accuracy for the classification of around 0.45.
 4. The model is saved as classifier.model
-5. To make predictions using the saved model, run the driver.py as follows: <br />
-      python driver.py input_directory output_directory <br />
+5. To make predictions using the saved model, run the driver.py as follows: <br /><br />
+      python driver.py input_directory output_directory <br /><br />
   where "input_directory" is a directory for input data files and output_directory is a directory for output of the predictions.
 6. Evaluation metrics provided at the Physionet website are run to compare the predictions with the original data.
   
   # Conclusions & things to do
   
-This is only a first approach to get familiar with the data, do some exploratory analyisis and predictions. ECG signals are really complicated, hard to interpret and, as expected, a simple feature extracion of the R peaks is not sufficient to deploy an accurate classification model.
+This is only a first approach to get familiar with the data, do some exploratory analyisis and predictions. ECG signals are really complicated, hard to interpret and, as expected, a simple feature extracion of the R peaks or FFT characteristics is not sufficient to deploy an accurate classification model.
 
 As I mentioned in the notebook, some of the arrythmias are not really related to the R peak of the ECG. Therefore, after optimizing and training the models, I could not achieve an accuracy of more than 0.45. 
 
