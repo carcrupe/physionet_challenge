@@ -15,7 +15,7 @@ In the uploaded notebook physionet_EDA&models.ipynb, I have followed several ste
 
 1. Load the ECG signals and header with information such as sampling rate, age of the subject and diagnostic.
 2. Extract a few paremeters from the header and with respect to the amplitude and time between R peaks in the ECG signal. I have saved this information as features in a dataframe and the diagnostic as the target for the model. Also, applying the FFT, I have stored as features the four highest peaks of the spectrum, to add information about the main frequencies of the signal.
-3. I have trained and optimized several models, obtaining in the best case an accuracy for the classification of around 0.45.
+3. I have trained and optimized several models, obtaining in the best case an accuracy for the classification of around 0.51.
 4. The model is saved as classifier.model
 5. To make predictions using the saved model, run the driver.py as follows: <br /><br />
       python driver.py input_directory output_directory <br /><br />
@@ -26,6 +26,6 @@ In the uploaded notebook physionet_EDA&models.ipynb, I have followed several ste
   
 This is only a first approach to get familiar with the data, do some exploratory analyisis and predictions. ECG signals are really complicated, hard to interpret and, as expected, a simple feature extracion of the R peaks or FFT characteristics is not sufficient to deploy an accurate classification model.
 
-As I mentioned in the notebook, some of the arrythmias are not really related to the R peak of the ECG. Therefore, after optimizing and training the models, I could not achieve an accuracy of more than 0.45. 
+As I mentioned in the notebook, some of the arrythmias are not really related to the R peak of the ECG. Therefore, after optimizing and training the models, I could not achieve an accuracy of more than 0.5. 
 
 As the next step, I will work on extracting more meaningful features from the ECG events, such as position and duration of the P wave, QRS, T wave, ST segment, PR segment, etc. Using these paramenters as features for the training of the model, should give much better results in the prediction of each of the targeted arrythmias.
