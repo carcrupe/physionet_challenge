@@ -53,7 +53,7 @@ def detect_peaks(ecg_measurements,signal_frequency,gain):
         filter_highcut = 15.0
         filter_order = 1
         integration_window = 30  # Change proportionally when adjusting frequency (in samples).
-        findpeaks_limit = 0.35
+        findpeaks_limit = 100
         findpeaks_spacing = 100  # Change proportionally when adjusting frequency (in samples).
         refractory_period = 240  # Change proportionally when adjusting frequency (in samples).
         qrs_peak_filtering_factor = 0.125
